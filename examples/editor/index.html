@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>atto.js editor demo</title>
+        <link rel="stylesheet" href="style.css">
+        <script type="module" src="script.js"></script>
+    </head>
+    <body>
+        <h1>atto.js editor demo</h1>
+        <nav>
+            <select id="demo">
+                <option value="hello">Hello</option>
+                <option value="fizzbuzz">Fizzbuzz</option>
+                <option value="tree">Tree</option>
+                <option value="mandelbrot">Mandelbrot</option>
+            </select>
+            <button id="run">Run</button>
+            <button id="stop">Stop</button>
+        </nav>
+        <main>
+            <textarea spellcheck="false" id="editor"></textarea>
+            <textarea spellcheck="false" disabled id="output"></textarea>
+        </main>
+    </body>
+</html>

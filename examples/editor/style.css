@@ -1,0 +1,22 @@
+* {
+    font-family: monospace;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 1rem;
+    min-height: calc(100vh - 2rem);
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+    gap: 0.5rem;
+}
+
+textarea {
+    flex-grow: 1;
+}

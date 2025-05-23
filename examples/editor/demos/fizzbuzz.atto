@@ -1,0 +1,11 @@
+for i = 1 to 100
+    if i mod 3 = 0 and i mod 5 = 0
+        print "Fizzbuzz!"
+    else if i mod 3 = 0
+        print "Fizz!"
+    else if i mod 5 = 0
+        print "Buzz!"
+    else
+        print i
+    end
+next

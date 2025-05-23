@@ -1,0 +1,26 @@
+iterationsCap = 1000
+
+for y0 = -1 to 1 step 0.1
+    for x0 = -2.5 to 1 step 0.1
+        x = 0
+        y = 0
+
+        iterations = 0
+
+        while x ^ 2 + y ^ 2 <= 2 * 2 and iterations < iterationsCap
+            tempX = x ^ 2 - y ^ 2 + x0
+            y = 2 * x * y + y0
+            x = tempX
+
+            iterations = iterations + 1
+        loop
+
+        if iterations = iterationsCap
+            print "*";
+        else
+            print ".";
+        end
+    next
+
+    print
+next
