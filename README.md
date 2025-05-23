@@ -1,6 +1,8 @@
 # `atto.js`
 Embed the [atto programming language](https://atto.devicefuture.org) into your JavaScript projects!
 
+Want to see it for yourself? Check out the [editor demo](https://attojs.devicefuture.org/examples/editor/)!
+
 ## Developing locally
 To clone this repo, you'll need to use the `--recurse-submodules` flag on `git clone`:
 
