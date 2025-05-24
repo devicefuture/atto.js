@@ -17,6 +17,16 @@ main {
     gap: 0.5rem;
 }
 
-textarea {
+main > * {
+    flex-grow: 1;
+}
+
+.editors {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.editors > * {
     flex-grow: 1;
 }

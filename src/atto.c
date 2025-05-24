@@ -5,8 +5,9 @@
 #define WASM_IMPORT(module, name) __attribute__((import_module(module))) __attribute__((import_name(name)))
 #define WASM_CONSTRUCTOR __attribute__((constructor))
 
-WASM_IMPORT("main", "log") void main_log(char* text);
+WASM_IMPORT("main", "log") void main_log(const char* text);
 WASM_IMPORT("main", "logChar") void main_logChar(char c);
+WASM_IMPORT("main", "handleCommand") void main_handleCommand(void* context, const char* command);
 
 #define CATTO_NOSTDLIB
 #define CATTO_LOG main_log
@@ -40,4 +41,12 @@ WASM_EXPORT_AS("freeString") void freeString(char* string) {
 
 WASM_EXPORT_AS("init") void init(Block* memoryBase) {
     firstFreeBlock = base = memoryBase;
+}
+
+void handleCommand(catto_Context* context) {
+    main_handleCommand(context, context->currentParsedStatement->value.asStatement.attributes.asCommandHandler->name);
+}
+
+WASM_EXPORT_AS("addCommand") void addCommand(catto_Context* context, const char* name) {
+    catto_addCommand(context, name, handleCommand);
 }

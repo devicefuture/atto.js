@@ -24,3 +24,5 @@ for y0 = -1 to 1 step 0.1
 
     print
 next
+
+alert "Finished!"

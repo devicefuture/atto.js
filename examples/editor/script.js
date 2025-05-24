@@ -9,6 +9,7 @@ window.addEventListener("load", async function() {
     var runButton = document.querySelector("#run");
     var stopButton = document.querySelector("#stop");
     var editor = document.querySelector("#editor");
+    var jsEditor = document.querySelector("#jsEditor");
     var output = document.querySelector("#output");
 
     async function loadCode() {
@@ -16,6 +17,20 @@ window.addEventListener("load", async function() {
         var code = await response.text();
 
         editor.value = code;
+
+        try {
+            var response = await fetch(`demos/${demoInput.value}.js`);
+
+            if (!response.ok) {
+                throw null;
+            }
+
+            var code = await response.text();
+
+            jsEditor.value = code;
+        } catch (error) {
+            jsEditor.value = "// This demo doesn't have any custom JavaScript code";
+        }
     }
 
     var consoleLines = [""];
@@ -26,6 +41,8 @@ window.addEventListener("load", async function() {
 
     runButton.addEventListener("click", function() {
         consoleLines = [""];
+
+        eval(jsEditor.value);
 
         context.load(editor.value);
         context.run();
