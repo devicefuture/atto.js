@@ -21,6 +21,10 @@ main > * {
     flex-grow: 1;
 }
 
+textarea {
+    resize: none;
+}
+
 .editors {
     display: flex;
     flex-direction: column;
