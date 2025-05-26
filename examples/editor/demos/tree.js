@@ -10,7 +10,3 @@ context.addCommand("input", function(message, identifier) {
 
     identifier.asString = prompt(message?.asString);
 });
-
-context.addCommand("alert", function(message) {
-    alert(message?.asString);
-});

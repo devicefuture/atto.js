@@ -1,7 +1,9 @@
 iterationsCap = 1000
 
-for y0 = -1 to 1 step 0.1
-    for x0 = -2.5 to 1 step 0.1
+input "Scale? (Usually 1) ", scale%
+
+for y0 = -1 to 1 step 0.1 / scale% 
+    for x0 = -2.5 to 1 step 0.1 / scale%
         x = 0
         y = 0
 

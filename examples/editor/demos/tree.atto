@@ -1,9 +1,9 @@
-trunkHeight = 4
-trunkThickness = 4
-branches = 6
-layers = 6
+input "Trunk height? (Usually 4) ", trunkHeight%
+input "Trunk thickness? (Usually 4) ", trunkThickness%
+input "Branches? (Usually 6) ", branches%
+input "Layers? (Usually 6) ", layers%
 
-padding = branches * (layers + 1)
+padding = branches% * (layers% + 1)
 
 def outChars times, char$
     for i = 1 to times
@@ -11,16 +11,16 @@ def outChars times, char$
     next
 end
 
-for x = 1 to branches
-    for y = 1 to layers
+for x = 1 to branches%
+    for y = 1 to layers%
         outChars padding - (x * y), " "
         outChars x * y * 2, "*"
         print
     next
 next
 
-for j = 1 to trunkHeight
-    outChars padding - (trunkThickness / 2), " "
-    outChars trunkThickness, "="
+for j = 1 to trunkHeight%
+    outChars padding - (trunkThickness% / 2), " "
+    outChars trunkThickness%, "="
     print
 next
