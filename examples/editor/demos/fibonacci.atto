@@ -1,0 +1,23 @@
+def fibonacci n, result
+    if n < 0
+        return
+    end
+    
+    if n < 2
+        result = n
+        return
+    end
+
+    fibonacci n - 1, a
+    fibonacci n - 2, b
+
+    result = a + b
+end
+
+dim list
+
+for i=1 to 10
+    fibonacci i, list[i]
+next
+
+print list
