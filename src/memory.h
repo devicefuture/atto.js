@@ -8,6 +8,8 @@ typedef char bool;
 extern Block* base;
 extern Block* firstFreeBlock;
 
+extern void (*heapLogger)(char*);
+
 void* memset(void* destination, int value, size_t size);
 void* memcpy(void* destination, const void* source, size_t size);
 void* malloc(size_t size);

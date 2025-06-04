@@ -17,6 +17,8 @@
 Block* base;
 Block* firstFreeBlock;
 
+void (*heapLogger)(char*);
+
 void* memset(void* destination, int value, size_t size) {
     for (size_t i = 0; i < size; i++) {
         *((char*)destination + size) = value;
@@ -81,18 +83,15 @@ void* malloc(size_t size) {
 
             Block* originalBlock = currentBlock;
             size_t totalUsableSize = originalBlockSize;
-            bool encounteredUsedBlock = false;
             bool encounteredLastBlock = false;
 
-            DEBUG_HEAP_LOG("Attempt resize");
+            DEBUG_HEAP_LOG("Attempt merge");
 
-            do {
+            while (true) {
                 currentBlock += sizeof(Block) + BLOCK_SIZE(currentBlock);
 
                 if (BLOCK_IS_USED(currentBlock)) {
                     DEBUG_HEAP_LOG("  Encountered used block");
-
-                    encounteredUsedBlock = true;
 
                     break;
                 }
@@ -108,20 +107,26 @@ void* malloc(size_t size) {
                 }
 
                 totalUsableSize += *currentBlock + sizeof(Block);
-            } while (totalUsableSize < size);
-
-            if (encounteredUsedBlock) {
-                continue;
             }
-
-            currentBlock = originalBlock;
 
             if (encounteredLastBlock) {
                 DEBUG_HEAP_LOG("  Using last block");
 
+                currentBlock = originalBlock;
+
                 *(currentBlock + sizeof(Block) + size) = 0; // Create a new last block after this one
+                originalBlockSize = totalUsableSize;
             } else {
-                *currentBlock = totalUsableSize;
+                *originalBlock = totalUsableSize;
+
+                if (totalUsableSize < size + sizeof(Block)) {
+                    continue;
+                }
+
+                DEBUG_HEAP_LOG("  Use merged block");
+
+                currentBlock = originalBlock;
+                originalBlockSize = totalUsableSize;
             }
         }
 

@@ -41,8 +41,33 @@ WASM_EXPORT_AS("freeString") void freeString(char* string) {
     free(string);
 }
 
+void print(char* message) {
+    main_log(message);
+    main_log("\n");
+}
+
 WASM_EXPORT_AS("init") void init(Block* memoryBase) {
+    heapLogger = print;
+
     firstFreeBlock = base = memoryBase;
+    *firstFreeBlock = 0;
+}
+
+WASM_EXPORT_AS("getErrorState") char* getErrorState(catto_Context* context) {
+    switch (context->errorState) {
+        case CATTO_ERROR_STATE_NONE: return "CATTO_ERROR_STATE_NONE";
+        case CATTO_ERROR_STATE_UNEXPECTED_TOKEN: return "CATTO_ERROR_STATE_UNEXPECTED_TOKEN";
+        case CATTO_ERROR_STATE_NO_RETURN: return "CATTO_ERROR_STATE_NO_RETURN";
+        case CATTO_ERROR_STATE_MISMATCHED_OPENING_MARK: return "CATTO_ERROR_STATE_MISMATCHED_OPENING_MARK";
+        case CATTO_ERROR_STATE_MISMATCHED_CLOSING_MARK: return "CATTO_ERROR_STATE_MISMATCHED_CLOSING_MARK";
+        case CATTO_ERROR_STATE_LOOP_CONTROL_OUTSIDE_LOOP: return "CATTO_ERROR_STATE_LOOP_CONTROL_OUTSIDE_LOOP";
+        case CATTO_ERROR_STATE_UNKNOWN_PROCEDURE: return "CATTO_ERROR_STATE_UNKNOWN_PROCEDURE";
+        case CATTO_ERROR_STATE_NOT_A_FUNCTION: return "CATTO_ERROR_STATE_NOT_A_FUNCTION";
+        case CATTO_ERROR_STATE_NOT_A_LIST: return "CATTO_ERROR_STATE_NOT_A_LIST";
+        case CATTO_ERROR_STATE_INVALID_LIST_VALUE: return "CATTO_ERROR_STATE_INVALID_LIST_VALUE";
+        case CATTO_ERROR_STATE_CANNOT_ASSIGN_VALUE: return "CATTO_ERROR_STATE_CANNOT_ASSIGN_VALUE";
+        default: return "ATTOJS_ERROR_STATE_UNKNOWN";
+    }
 }
 
 void handleCommand(catto_Context* context) {
