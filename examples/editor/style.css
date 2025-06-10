@@ -1,5 +1,7 @@
+@import url("fonts/fonts.css");
+
 * {
-    font-family: monospace;
+    font-family: "Lexend Deca";
 }
 
 body {
@@ -22,7 +24,14 @@ main > * {
 }
 
 textarea {
+    padding: 0.5rem;
+    font-family: "Brass Mono";
+    font-size: 1.25rem;
+    background-color: #eeeeee;
+    border: none;
+    border-radius: 0.5rem;
     resize: none;
+    outline: none;
 }
 
 .editors {

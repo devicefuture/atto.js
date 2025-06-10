@@ -39,8 +39,11 @@ window.addEventListener("load", async function() {
         loadCode();
     });
 
-    runButton.addEventListener("click", function() {
+    runButton.addEventListener("click", async function() {
         consoleLines = [""];
+        output.value = "";
+
+        await context.stop();
 
         eval(jsEditor.value);
 
@@ -50,6 +53,15 @@ window.addEventListener("load", async function() {
 
     stopButton.addEventListener("click", function() {
         context.stop();
+    });
+
+    ["error", "unhandledrejection"].forEach(function(type) {
+        window.addEventListener(type, function(event) {
+            console.log(event);
+            window.dispatchEvent(new CustomEvent("atto-log", {detail: {
+                message: `JS error: ${event.type == "unhandledrejection" ? event.reason.message : event.message}`
+            }}));
+        });
     });
 
     window.addEventListener("atto-log", function(event) {

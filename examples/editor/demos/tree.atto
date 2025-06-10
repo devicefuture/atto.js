@@ -1,7 +1,7 @@
-input "Trunk height? (Usually 4) ", trunkHeight%
-input "Trunk thickness? (Usually 4) ", trunkThickness%
-input "Branches? (Usually 6) ", branches%
-input "Layers? (Usually 6) ", layers%
+input "Trunk height? (Usually 3) ", trunkHeight%
+input "Trunk thickness? (Usually 3) ", trunkThickness%
+input "Branches? (Usually 5) ", branches%
+input "Layers? (Usually 5) ", layers%
 
 padding = branches% * (layers% + 1)
 
