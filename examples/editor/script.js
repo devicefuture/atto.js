@@ -57,7 +57,6 @@ window.addEventListener("load", async function() {
 
     ["error", "unhandledrejection"].forEach(function(type) {
         window.addEventListener(type, function(event) {
-            console.log(event);
             window.dispatchEvent(new CustomEvent("atto-log", {detail: {
                 message: `JS error: ${event.type == "unhandledrejection" ? event.reason.message : event.message}`
             }}));
