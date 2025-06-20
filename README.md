@@ -11,7 +11,7 @@ git clone --recures-submodules https://github.com/devicefuture/atto.js
 ```
 
 ## Building
-[catto](https://github.com/devicefuture/catto) is the C implementation of the atto programming language, and atto.js uses it as a dependency. To build catto and produce a binary for WebAssembly, run:
+[catto](https://github.com/devicefuture/catto) is the C implementation of the atto programming language, and atto.js uses it as a dependency, which is running inside a WebAssembly module. To build catto and produce a binary for WebAssembly, run:
 
 ```bash
 ./build.sh
