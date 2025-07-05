@@ -11,6 +11,7 @@ fi
 $CC \
     --target=wasm32 \
     -nostdlib \
+    -DCATTO_USE_64_BIT \
     -Wl,--no-entry \
     -Wl,--export=__heap_base \
     src/*.c -o lib/bin/atto.wasm
